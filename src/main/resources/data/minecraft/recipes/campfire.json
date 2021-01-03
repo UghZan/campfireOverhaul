@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "minecraft:logs_that_burn"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+	{
+      "tag": "minecraft:logs_that_burn"
+    }
+  ],
+  "result": {
+    "item": "minecraft:campfire"
+  }
+}

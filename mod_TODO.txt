@@ -1,0 +1,12 @@
+TODO:
+-add missing config stuff (soul duplicate, flint switch)
+-post 0_0
+DONE:
+-fix up stuff
+-bonfire recipe change
+-bonfire new recipes: charcoal, sponges
+-bonfire created unlit (configurable!)
+-config file
+-bonfire die after some time (configurable!)
+-you can add fuel to bonfire
+-new ways to start fire: two hand gravel+right click (configurable probability)
