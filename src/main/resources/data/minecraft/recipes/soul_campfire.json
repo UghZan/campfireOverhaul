@@ -8,13 +8,13 @@
       "item": "minecraft:stick"
     },
     {
-      "item": "minecraft:stick"
+      "tag": "minecraft:soul_fire_base_blocks"
     },
 	{
       "tag": "minecraft:logs"
     }
   ],
   "result": {
-    "item": "minecraft:campfire"
+    "item": "minecraft:soul_campfire"
   }
 }
