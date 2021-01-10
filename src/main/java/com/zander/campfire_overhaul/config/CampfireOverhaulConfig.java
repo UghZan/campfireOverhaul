@@ -12,13 +12,18 @@ public class CampfireOverhaulConfig {
     public static final ForgeConfigSpec.BooleanValue CAMPFIRE_CREATED_UNLIT;
     public static final ForgeConfigSpec.IntValue CAMPFIRE_DEFAULT_LIFE_TIME;
     public static final ForgeConfigSpec.BooleanValue CAMPFIRE_INFINITE_LIFE_TIME;
+
+    public static final ForgeConfigSpec.BooleanValue SOUL_CAMPFIRE_CREATED_UNLIT;
+    public static final ForgeConfigSpec.IntValue SOUL_CAMPFIRE_DEFAULT_LIFE_TIME;
+    public static final ForgeConfigSpec.BooleanValue SOUL_CAMPFIRE_INFINITE_LIFE_TIME;
+
     public static final ForgeConfigSpec.IntValue CAMPFIRE_FUEL_MULTIPLIER;
     public static final ForgeConfigSpec.BooleanValue DOUBLE_FLINT_IGNITION;
     public static final ForgeConfigSpec.DoubleValue FLINT_IGNITE_CHANCE;
 
     static {
         final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
-        builder.push("campfire_overhaul");
+        builder.push("Normal Campfire");
 
         CAMPFIRE_CREATED_UNLIT = builder
                 .comment("Default state of campfire: true - unlit, false - lit:")
@@ -31,6 +36,24 @@ public class CampfireOverhaulConfig {
         CAMPFIRE_INFINITE_LIFE_TIME = builder
                 .comment("Should campfire burn indefinitely? Overrides default life time")
                 .define("campfireInfiniteLifeTime", false);
+
+        builder.pop();
+        builder.push("Soul Campfire");
+
+        SOUL_CAMPFIRE_CREATED_UNLIT = builder
+                .comment("Default state of soul campfire: true - unlit, false - lit:")
+                .define("soulCampfireCreatedUnlit", true);
+
+        SOUL_CAMPFIRE_DEFAULT_LIFE_TIME = builder
+                .comment("How long of a burn time should soul campfire have by default (in ticks, ticks = 1/20 of second):")
+                .defineInRange("soulCampfireDefaultLifeTime", 4000, 0, Integer.MAX_VALUE);
+
+        SOUL_CAMPFIRE_INFINITE_LIFE_TIME = builder
+                .comment("Should soul campfire burn indefinitely? Overrides default life time")
+                .define("soulCampfireInfiniteLifeTime", true);
+
+        builder.pop();
+        builder.push("Miscellaneous");
 
         CAMPFIRE_FUEL_MULTIPLIER = builder
                 .comment("Value, by which the fuel time of thrown item is multiplied\ne.g. you throw a stick into a campfire. With multiplier 1 it will give a campfire 100 ticks = 5 seconds of time. With multiplier 4 it will give it 20 seconds of time. ")

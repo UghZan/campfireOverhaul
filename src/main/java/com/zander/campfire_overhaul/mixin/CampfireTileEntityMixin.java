@@ -3,6 +3,7 @@ package com.zander.campfire_overhaul.mixin;
 import com.zander.campfire_overhaul.config.CampfireOverhaulConfig;
 import com.zander.campfire_overhaul.util.ICampfireExtra;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.CampfireBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -22,7 +23,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(CampfireTileEntity.class)
 public abstract class CampfireTileEntityMixin extends TileEntity implements ICampfireExtra {
 
-    @Shadow public abstract void dropAllItems();
+    @Shadow
+    public abstract void dropAllItems();
 
     private int lifeTime = 0;
 
@@ -33,7 +35,7 @@ public abstract class CampfireTileEntityMixin extends TileEntity implements ICam
 
     @Override
     public void addLifeTime(int add) {
-        lifeTime+=add;
+        lifeTime += add;
     }
 
     @Override
@@ -53,12 +55,10 @@ public abstract class CampfireTileEntityMixin extends TileEntity implements ICam
     }
 
     @Inject(at = @At("RETURN"), method = "tick()V")
-    private void tick(CallbackInfo ci)
-    {
-        if(world != null)
-        {
-            if(lifeTime != -1) {
-                if(CampfireBlock.isLit(world.getBlockState(getPos())))
+    private void tick(CallbackInfo ci) {
+        if (world != null) {
+            if (lifeTime != -1337) {
+                if (CampfireBlock.isLit(world.getBlockState(getPos())))
                     if (lifeTime > 0)
                         lifeTime--;
                     else {
@@ -68,27 +68,15 @@ public abstract class CampfireTileEntityMixin extends TileEntity implements ICam
         }
     }
 
-    @Inject(at = @At("RETURN"), method = "<init>()V")
-    private void init(CallbackInfo ci)
-    {
-        if(!CampfireOverhaulConfig.CAMPFIRE_INFINITE_LIFE_TIME.get())
-            lifeTime = CampfireOverhaulConfig.CAMPFIRE_DEFAULT_LIFE_TIME.get();
-        else
-            lifeTime = -1;
-    }
-
     @Inject(at = @At("RETURN"), method = "read(Lnet/minecraft/block/BlockState;Lnet/minecraft/nbt/CompoundNBT;)V")
-    private void readAdditional(BlockState state, CompoundNBT nbt, CallbackInfo ci)
-    {
-        if(nbt.contains("LifeTime", 3))
-        {
+    private void readAdditional(BlockState state, CompoundNBT nbt, CallbackInfo ci) {
+        if (nbt.contains("LifeTime", 3)) {
             setLifeTime(nbt.getInt("LifeTime"));
         }
     }
 
     @Inject(at = @At("RETURN"), method = "write(Lnet/minecraft/nbt/CompoundNBT;)Lnet/minecraft/nbt/CompoundNBT;", cancellable = true)
-    private void writeAdditional(CompoundNBT compound, CallbackInfoReturnable<CompoundNBT> cir)
-    {
+    private void writeAdditional(CompoundNBT compound, CallbackInfoReturnable<CompoundNBT> cir) {
         CompoundNBT nbt = cir.getReturnValue();
         nbt.putInt("LifeTime", lifeTime);
         cir.setReturnValue(nbt);
