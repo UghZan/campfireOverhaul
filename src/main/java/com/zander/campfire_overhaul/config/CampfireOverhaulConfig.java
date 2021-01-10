@@ -20,6 +20,7 @@ public class CampfireOverhaulConfig {
     public static final ForgeConfigSpec.IntValue CAMPFIRE_FUEL_MULTIPLIER;
     public static final ForgeConfigSpec.BooleanValue DOUBLE_FLINT_IGNITION;
     public static final ForgeConfigSpec.DoubleValue FLINT_IGNITE_CHANCE;
+    public static final ForgeConfigSpec.BooleanValue DRAGON_BREATH_MAGIC;
 
     static {
         final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
@@ -66,6 +67,10 @@ public class CampfireOverhaulConfig {
         FLINT_IGNITE_CHANCE = builder
                 .comment("Chance of successfully igniting a campfire using two flints. By default, it's 33% (0.33).")
                 .defineInRange("flintIgniteChance", 0.33, 0, 1);
+
+        DRAGON_BREATH_MAGIC = builder
+                .comment("Enable/disable dragon breath giving campfires infinite life time")
+                .define("dragonBreathMakesCampfiresEternal", true);
 
         builder.pop();
 

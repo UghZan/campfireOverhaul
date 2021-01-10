@@ -1,5 +1,6 @@
 package com.zander.campfire_overhaul.event;
 
+import com.zander.campfire_overhaul.CampfireOverhaul;
 import com.zander.campfire_overhaul.config.CampfireOverhaulConfig;
 import com.zander.campfire_overhaul.util.ICampfireExtra;
 import net.minecraft.block.BlockState;
@@ -62,6 +63,9 @@ public class AlternativeFireMethods {
             }
             else if(player.getHeldItemMainhand().getItem() == Items.DRAGON_BREATH)
             {
+                if(!CampfireOverhaulConfig.DRAGON_BREATH_MAGIC.get())
+                    return;
+                
                 if(!world.isRemote)
                 {
                     world.setBlockState(blockPos, blockState.with(BlockStateProperties.LIT, Boolean.valueOf(true)), 3);
