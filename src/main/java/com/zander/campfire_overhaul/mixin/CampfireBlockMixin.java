@@ -18,6 +18,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import org.spongepowered.asm.mixin.Final;
@@ -44,29 +45,24 @@ public abstract class CampfireBlockMixin extends ContainerBlock {
         super(builder);
     }
 
-    @Inject(at = @At("RETURN"), method = "<init>(ZILnet/minecraft/block/AbstractBlock$Properties;)V")
+    /*@Inject(at = @At("RETURN"), method = "<init>(ZILnet/minecraft/block/AbstractBlock$Properties;)V")
     protected void init(boolean smokey, int fireDamage, AbstractBlock.Properties properties, CallbackInfo callbackInfo) {
 
         if(isSoul(getDefaultState())) {
-            if (CampfireOverhaulConfig.SOUL_CAMPFIRE_CREATED_UNLIT.get())
-                this.setDefaultState(this.getDefaultState().with(CampfireBlock.LIT, false));
+            this.(this.getDefaultState().with(CampfireBlock.LIT, !CampfireOverhaulConfig.SOUL_CAMPFIRE_CREATED_UNLIT.get()));
         }
         else
-            if(CampfireOverhaulConfig.CAMPFIRE_CREATED_UNLIT.get())
-                this.setDefaultState(this.getDefaultState().with(CampfireBlock.LIT, false));
-
-    }
+            this.setDefaultState(this.getDefaultState().with(CampfireBlock.LIT, !CampfireOverhaulConfig.CAMPFIRE_CREATED_UNLIT.get()));
+    }*/
 
     @Inject(at = @At("RETURN"), method = "getStateForPlacement(Lnet/minecraft/item/BlockItemUseContext;)Lnet/minecraft/block/BlockState;", cancellable = true)
     protected void getStateForPlacement(BlockItemUseContext context, CallbackInfoReturnable<BlockState> callbackInfo)
     {
         if(isSoul(getDefaultState())) {
-            if (CampfireOverhaulConfig.SOUL_CAMPFIRE_CREATED_UNLIT.get())
-                this.setDefaultState(this.getDefaultState().with(CampfireBlock.LIT, false));
+            callbackInfo.setReturnValue(callbackInfo.getReturnValue().with(CampfireBlock.LIT, callbackInfo.getReturnValue().get(CampfireBlock.LIT) & !CampfireOverhaulConfig.SOUL_CAMPFIRE_CREATED_UNLIT.get()));
         }
         else
-            if(CampfireOverhaulConfig.CAMPFIRE_CREATED_UNLIT.get())
-                this.setDefaultState(this.getDefaultState().with(CampfireBlock.LIT, false));
+            callbackInfo.setReturnValue(callbackInfo.getReturnValue().with(CampfireBlock.LIT, callbackInfo.getReturnValue().get(CampfireBlock.LIT) & !CampfireOverhaulConfig.CAMPFIRE_CREATED_UNLIT.get()));
     }
 
     @Inject(at = @At("HEAD"), method = "onEntityCollision(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V", cancellable = true)

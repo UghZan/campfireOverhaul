@@ -43,7 +43,7 @@ public class CampfireOverhaulConfig {
 
         SOUL_CAMPFIRE_CREATED_UNLIT = builder
                 .comment("Default state of soul campfire: true - unlit, false - lit:")
-                .define("soulCampfireCreatedUnlit", true);
+                .define("soulCampfireCreatedUnlit", false);
 
         SOUL_CAMPFIRE_DEFAULT_LIFE_TIME = builder
                 .comment("How long of a burn time should soul campfire have by default (in ticks, ticks = 1/20 of second):")

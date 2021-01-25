@@ -65,7 +65,7 @@ public class AlternativeFireMethods {
             {
                 if(!CampfireOverhaulConfig.DRAGON_BREATH_MAGIC.get())
                     return;
-                
+
                 if(!world.isRemote)
                 {
                     world.setBlockState(blockPos, blockState.with(BlockStateProperties.LIT, Boolean.valueOf(true)), 3);
