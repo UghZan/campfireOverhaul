@@ -1,6 +1,7 @@
 package com.zander.campfire_overhaul.event;
 
 import com.zander.campfire_overhaul.config.CampfireOverhaulConfig;
+import com.zander.campfire_overhaul.util.CampfireHelper;
 import com.zander.campfire_overhaul.util.ICampfireExtra;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -100,16 +101,13 @@ public class AlternativeFireMethods {
         BlockState placed = event.getPlacedBlock();
         BlockPos pos = event.getPos();
 
-        if(placed.getBlock() != Blocks.CAMPFIRE && placed.getBlock() != Blocks.SOUL_CAMPFIRE)
-            return;
-
         if(!(event.getWorld().getTileEntity(pos) instanceof CampfireTileEntity))
             return;
 
         CampfireTileEntity tileEntity = (CampfireTileEntity) event.getWorld().getTileEntity(pos);
         ICampfireExtra lifeTime = (ICampfireExtra) tileEntity;
 
-        if(placed.getBlock() == Blocks.SOUL_CAMPFIRE)
+        if(CampfireHelper.isSoul(placed))
         {
             if(CampfireOverhaulConfig.SOUL_CAMPFIRE_INFINITE_LIFE_TIME.get())
                 lifeTime.setLifeTime(-1337);

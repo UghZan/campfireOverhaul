@@ -27,7 +27,7 @@ public abstract class CampfireTileEntityMixin extends TileEntity implements ICam
     @Shadow
     public abstract void dropAllItems();
 
-    private int lifeTime = -9999;
+    private int lifeTime = -1337;
 
     @Override
     public int getLifeTime() {
@@ -72,6 +72,7 @@ public abstract class CampfireTileEntityMixin extends TileEntity implements ICam
                     if (lifeTime > 0)
                         lifeTime--;
                     else {
+                        lifeTime = 0;
                         if(CampfireHelper.isSoul(this.getBlockState()))
                         {
                             if(CampfireOverhaulConfig.SOUL_CAMPFIRE_DESTROYED_ON_BURNOUT.get())
