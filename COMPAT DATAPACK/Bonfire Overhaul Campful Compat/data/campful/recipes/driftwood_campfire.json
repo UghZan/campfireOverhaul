@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "campfire",
+  "ingredients": [
+    {
+      "tag": "upgrade_aquatic:driftwood_logs"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+	{
+      "tag": "upgrade_aquatic:driftwood_logs"
+    }
+  ],
+  "result": {
+    "item": "campful:driftwood_campfire"
+  }
+}

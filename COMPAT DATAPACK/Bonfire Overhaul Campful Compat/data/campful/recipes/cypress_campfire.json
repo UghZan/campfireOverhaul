@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": campfire,
+  "ingredients": [
+    {
+      "tag": "bayou_blues:cypress_logs"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+	{
+      "tag": "bayou_blues:cypress_logs"
+    }
+  ],
+  "result": {
+    "item": "campful:cypress_campfire"
+  }
+}

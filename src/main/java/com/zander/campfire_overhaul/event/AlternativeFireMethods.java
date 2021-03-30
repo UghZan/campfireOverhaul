@@ -1,15 +1,11 @@
 package com.zander.campfire_overhaul.event;
 
-import com.zander.campfire_overhaul.CampfireOverhaul;
 import com.zander.campfire_overhaul.config.CampfireOverhaulConfig;
 import com.zander.campfire_overhaul.util.ICampfireExtra;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CampfireBlock;
-import net.minecraft.block.IceBlock;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -17,9 +13,8 @@ import net.minecraft.tileentity.CampfireTileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -30,9 +25,6 @@ public class AlternativeFireMethods {
     @SubscribeEvent
     public void fireStarterFlint(PlayerInteractEvent.RightClickBlock event) {
 
-        if (!CampfireOverhaulConfig.DOUBLE_FLINT_IGNITION.get())
-            return;
-
         World world = event.getWorld();
         PlayerEntity player = event.getPlayer();
         BlockPos blockPos = event.getPos();
@@ -40,6 +32,9 @@ public class AlternativeFireMethods {
 
         if (event.getHand() == Hand.MAIN_HAND)
             if (player.getHeldItemMainhand().getItem() == Items.FLINT && player.getHeldItemOffhand().getItem() == Items.FLINT) {
+
+                if (!CampfireOverhaulConfig.DOUBLE_FLINT_IGNITION.get())
+                    return;
 
                 if (!CampfireBlock.canBeLit(blockState))
                     return;
@@ -94,6 +89,8 @@ public class AlternativeFireMethods {
                     player.sendMessage(new StringTextComponent("This campfire have " + info.getLifeTime() / 20 + " seconds of burn time left."), player.getUniqueID());
                 else
                     player.sendMessage(new StringTextComponent("This campfire will burn forever!"), player.getUniqueID());
+
+            //player.sendMessage(new StringTextComponent(blockState.getBlock().getRegistryName().toString()), player.getUniqueID());
         }
     }
 

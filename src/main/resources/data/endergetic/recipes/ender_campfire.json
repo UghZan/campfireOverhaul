@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "minecraft:logs"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+	{
+      "tag": "endergetic:ender_fire_base_blocks"
+    }
+  ],
+  "result": {
+    "item": "endergetic:ender_campfire"
+  }
+}

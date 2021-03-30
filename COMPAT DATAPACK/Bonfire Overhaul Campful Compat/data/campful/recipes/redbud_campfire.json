@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "campfire",
+  "ingredients": [
+    {
+      "tag": "abundance:redbud_logs"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+	{
+      "tag": "abundance:redbud_logs"
+    }
+  ],
+  "result": {
+    "item": "campful:redbud_campfire"
+  }
+}

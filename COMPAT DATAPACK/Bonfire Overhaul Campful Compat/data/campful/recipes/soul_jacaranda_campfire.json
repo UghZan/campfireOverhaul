@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "soul_campfire",
+  "ingredients": [
+    {
+      "tag": "abundance:jacaranda_logs"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+	{
+      "tag": "minecraft:soul_fire_base_blocks"
+    }
+  ],
+  "result": {
+    "item": "campful:soul_jacaranda_campfire"
+  }
+}

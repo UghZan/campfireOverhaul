@@ -1,6 +1,7 @@
 package com.zander.campfire_overhaul.mixin;
 
 import com.zander.campfire_overhaul.config.CampfireOverhaulConfig;
+import com.zander.campfire_overhaul.util.CampfireHelper;
 import com.zander.campfire_overhaul.util.ICampfireExtra;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -26,7 +27,7 @@ public abstract class CampfireTileEntityMixin extends TileEntity implements ICam
     @Shadow
     public abstract void dropAllItems();
 
-    private int lifeTime = 0;
+    private int lifeTime = -9999;
 
     @Override
     public int getLifeTime() {
@@ -47,10 +48,19 @@ public abstract class CampfireTileEntityMixin extends TileEntity implements ICam
         super(tileEntityTypeIn.CAMPFIRE);
     }
 
-    private void extinguish() {
+    private void extinguishCampfire() {
         if (!this.world.isRemote) {
             this.world.playSound(null, pos, SoundEvents.ENTITY_GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 1.0F, 1.0F);
             this.world.setBlockState(this.pos, this.getBlockState().with(CampfireBlock.LIT, false));
+        }
+    }
+
+    private void breakCampfire()
+    {
+        this.dropAllItems();
+        if (!this.world.isRemote) {
+            this.world.playSound(null, pos, SoundEvents.ENTITY_GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            this.world.setBlockState(this.pos, Blocks.AIR.getDefaultState());
         }
     }
 
@@ -62,7 +72,20 @@ public abstract class CampfireTileEntityMixin extends TileEntity implements ICam
                     if (lifeTime > 0)
                         lifeTime--;
                     else {
-                        extinguish();
+                        if(CampfireHelper.isSoul(this.getBlockState()))
+                        {
+                            if(CampfireOverhaulConfig.SOUL_CAMPFIRE_DESTROYED_ON_BURNOUT.get())
+                                breakCampfire();
+                            else
+                                extinguishCampfire();
+                        }
+                        else
+                        {
+                            if(CampfireOverhaulConfig.CAMPFIRE_DESTROYED_ON_BURNOUT.get())
+                                breakCampfire();
+                            else
+                                extinguishCampfire();
+                        }
                     }
             }
         }

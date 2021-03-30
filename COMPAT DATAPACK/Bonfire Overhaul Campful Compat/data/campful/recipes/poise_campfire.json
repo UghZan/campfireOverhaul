@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "campfire",
+  "ingredients": [
+    {
+      "tag": "endergetic:poise_stems"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+	{
+      "tag": "endergetic:poise_stems"
+    }
+  ],
+  "result": {
+    "item": "campful:poise_campfire"
+  }
+}

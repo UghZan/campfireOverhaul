@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "campfire",
+  "ingredients": [
+    {
+      "tag": "minecraft:warped_stems"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+	{
+      "tag": "minecraft:warped_stems"
+    }
+  ],
+  "result": {
+    "item": "campful:warped_campfire"
+  }
+}

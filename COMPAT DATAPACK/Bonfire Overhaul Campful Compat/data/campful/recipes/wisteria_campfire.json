@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "campfire",
+  "ingredients": [
+    {
+      "tag": "environmental:wisteria_logs"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+	{
+      "tag": "environmental:wisteria_logs"
+    }
+  ],
+  "result": {
+    "item": "campful:wisteria_campfire"
+  }
+}

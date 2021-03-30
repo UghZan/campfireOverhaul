@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "campfire",
+  "ingredients": [
+    {
+      "tag": "abundance:jacaranda_logs"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+	{
+      "tag": "abundance:jacaranda_logs"
+    }
+  ],
+  "result": {
+    "item": "campful:jacaranda_campfire"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "campfire",
+  "ingredients": [
+    {
+      "tag": "minecraft:jungle_logs"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+	{
+      "tag": "minecraft:jungle_logs"
+    }
+  ],
+  "result": {
+    "item": "campful:jungle_campfire"
+  }
+}

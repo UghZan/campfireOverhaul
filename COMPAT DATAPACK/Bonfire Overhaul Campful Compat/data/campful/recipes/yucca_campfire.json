@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "campfire",
+  "ingredients": [
+    {
+      "tag": "atmospheric:yucca_logs"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+	{
+      "tag": "atmospheric:yucca_logs"
+    }
+  ],
+  "result": {
+    "item": "campful:yucca_campfire"
+  }
+}
