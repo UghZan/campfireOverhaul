@@ -1,8 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "group": "campfire",
   "ingredients": [
     {
-      "tag": "minecraft:oak_logs"
+      "tag": "upgrade_aquatic:driftwood_logs"
     },
     {
       "item": "minecraft:stick"
@@ -11,10 +12,10 @@
       "item": "minecraft:stick"
     },
 	{
-      "tag": "endergetic:ender_fire_base_blocks"
+      "tag": "upgrade_aquatic:driftwood_logs"
     }
   ],
   "result": {
-    "item": "endergetic:ender_campfire"
+    "item": "campful:driftwood_campfire"
   }
 }

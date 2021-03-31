@@ -1,8 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "group": "ender_campfire",
   "ingredients": [
     {
-      "tag": "minecraft:oak_logs"
+      "tag": "abundance:jacaranda_logs"
     },
     {
       "item": "minecraft:stick"
@@ -15,6 +16,6 @@
     }
   ],
   "result": {
-    "item": "endergetic:ender_campfire"
+    "item": "campful:ender_jacaranda_campfire"
   }
 }
