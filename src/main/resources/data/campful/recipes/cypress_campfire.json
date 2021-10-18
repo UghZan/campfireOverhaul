@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": campfire,
+  "group": "campfire",
   "ingredients": [
     {
       "tag": "bayou_blues:cypress_logs"

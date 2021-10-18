@@ -1,1 +1,0 @@
-This datapack replaces "Campful" recipes with "Campfire Overhaul" compact ones. Now you can make all of the new campfires in your inventory 2x2 grid! Also provides a small change of "Endergetic Expandsion" ender campfire recipe.

@@ -64,6 +64,30 @@ public abstract class CampfireTileEntityMixin extends TileEntity implements ICam
         }
     }
 
+    @Inject(at = @At("RETURN"), method = "<init>()V")
+    private void init(CallbackInfo ci)
+    {
+        if(CampfireOverhaulConfig.WORLDGEN_CAMPFIRES_INFINITE.get())
+            lifeTime = -1337;
+        else
+        {
+            if(CampfireHelper.isSoul(this.getBlockState()))
+            {
+                if(CampfireOverhaulConfig.SOUL_CAMPFIRE_INFINITE_LIFE_TIME.get())
+                    setLifeTime(-1337);
+                else
+                    setLifeTime(CampfireOverhaulConfig.SOUL_CAMPFIRE_DEFAULT_LIFE_TIME.get());
+            }
+            else
+            {
+                if(CampfireOverhaulConfig.CAMPFIRE_INFINITE_LIFE_TIME.get())
+                    setLifeTime(-1337);
+                else
+                    setLifeTime(CampfireOverhaulConfig.CAMPFIRE_DEFAULT_LIFE_TIME.get());
+            }
+        }
+    }
+
     @Inject(at = @At("RETURN"), method = "tick()V")
     private void tick(CallbackInfo ci) {
         if (world != null) {

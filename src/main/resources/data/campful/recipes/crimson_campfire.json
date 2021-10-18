@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": campfire,
+  "group": "campfire",
   "ingredients": [
     {
       "tag": "minecraft:crimson_stems"

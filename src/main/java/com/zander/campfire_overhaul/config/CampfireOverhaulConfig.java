@@ -24,8 +24,9 @@ public class CampfireOverhaulConfig {
     public static final ForgeConfigSpec.IntValue CAMPFIRE_FUEL_MULTIPLIER;
     public static final ForgeConfigSpec.BooleanValue DOUBLE_FLINT_IGNITION;
     public static final ForgeConfigSpec.DoubleValue FLINT_IGNITE_CHANCE;
-    public static final ForgeConfigSpec.BooleanValue DRAGON_BREATH_MAGIC;
-    public static final ForgeConfigSpec.BooleanValue DISABLE_CHARCOAL_DROP;
+    public static final ForgeConfigSpec.BooleanValue MAKING_INFINITE_CAMPFIRES;
+    public static final ForgeConfigSpec.ConfigValue<String> INFINTE_CAMPFIRE_ITEM;
+    public static final ForgeConfigSpec.BooleanValue WORLDGEN_CAMPFIRES_INFINITE;
 
     static {
         final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
@@ -89,13 +90,17 @@ public class CampfireOverhaulConfig {
                 .comment("Chance of successfully igniting a campfire using two flints. By default, it's 33% (0.33).")
                 .defineInRange("flintIgniteChance", 0.33, 0, 1);
 
-        DISABLE_CHARCOAL_DROP = builder
-                .comment("Enable/disable double flint ignition mechanic.")
-                .define("doubleFlintIgnition", true);
+        WORLDGEN_CAMPFIRES_INFINITE = builder
+                .comment("Enable/disable infinite life time for indirectly placed campfires (e.g. worldgen, other mods mechanics).")
+                .define("worldgenCampfiresInfinite", true);
 
-        DRAGON_BREATH_MAGIC = builder
-                .comment("Enable/disable dragon breath giving campfires infinite life time")
-                .define("dragonBreathMakesCampfiresEternal", true);
+        MAKING_INFINITE_CAMPFIRES = builder
+                .comment("Enable/disable ability to make campfires infinite with items.")
+                .define("makingEternalCampfires", true);
+
+        INFINTE_CAMPFIRE_ITEM = builder
+                .comment("Item that can make campfires infinite.")
+                .define("infinteCampfireItem", "minecraft:dragon_breath");
 
         builder.pop();
 

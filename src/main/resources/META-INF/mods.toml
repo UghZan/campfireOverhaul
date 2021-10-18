@@ -3,7 +3,7 @@ loaderVersion="[35,)" #mandatory This is typically bumped every Minecraft versio
 license="All rights reserved"
 [[mods]]
 modId="campfire_overhaul"
-version="1.0.4.1"
+version="1.0.5"
 displayName="Campfire Overhaul"
 authors="ZanderMeister"
 description='''
@@ -22,3 +22,25 @@ A mod that overhauls campfire mechanics to enhance immersion and usefulness.
     versionRange="[0,)"
     ordering="AFTER"
     side="BOTH"
+	
+[[dependencies.campfire_overhaul]]
+    modId="infernalexp"
+    mandatory=false
+    versionRange="[0,)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.campfire_overhaul]]
+    modId="endergetic"
+    mandatory=false
+    versionRange="[0,)"
+    ordering="AFTER"
+    side="BOTH"
+	
+[[dependencies.campfire_overhaul]]
+    modId="realistictorches"
+    mandatory=false
+    versionRange="[0,)"
+    ordering="AFTER"
+    side="BOTH"
+

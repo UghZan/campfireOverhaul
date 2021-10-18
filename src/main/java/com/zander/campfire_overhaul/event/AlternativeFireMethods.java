@@ -6,6 +6,7 @@ import com.zander.campfire_overhaul.util.ICampfireExtra;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CampfireBlock;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
@@ -19,12 +20,13 @@ import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Random;
 
 public class AlternativeFireMethods {
     @SubscribeEvent
-    public void fireStarterFlint(PlayerInteractEvent.RightClickBlock event) {
+    public void campfireInteractionEvents(PlayerInteractEvent.RightClickBlock event) {
 
         World world = event.getWorld();
         PlayerEntity player = event.getPlayer();
@@ -35,9 +37,6 @@ public class AlternativeFireMethods {
             if (player.getHeldItemMainhand().getItem() == Items.FLINT && player.getHeldItemOffhand().getItem() == Items.FLINT) {
 
                 if (!CampfireOverhaulConfig.DOUBLE_FLINT_IGNITION.get())
-                    return;
-
-                if (!CampfireBlock.canBeLit(blockState))
                     return;
 
                 Random rand = event.getWorld().rand;
@@ -57,9 +56,9 @@ public class AlternativeFireMethods {
 
                 }
             }
-            else if(player.getHeldItemMainhand().getItem() == Items.DRAGON_BREATH)
+            else if(player.getHeldItemMainhand().getItem().getRegistryName().equals(new ResourceLocation(CampfireOverhaulConfig.INFINTE_CAMPFIRE_ITEM.get())))
             {
-                if(!CampfireOverhaulConfig.DRAGON_BREATH_MAGIC.get())
+                if(!CampfireOverhaulConfig.MAKING_INFINITE_CAMPFIRES.get())
                     return;
 
                 if(!world.isRemote)
@@ -70,7 +69,6 @@ public class AlternativeFireMethods {
                 world.playSound(null, blockPos, SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 1.0F, 1F);
             }
     }
-
 
     @SubscribeEvent
     public void checkCampfireLifeTime(PlayerInteractEvent.RightClickBlock event) {
@@ -86,9 +84,13 @@ public class AlternativeFireMethods {
             ICampfireExtra info = (ICampfireExtra) world.getTileEntity(pos);
 
             if (!world.isRemote)
-                if (info.getLifeTime() != -1337)
-                    player.sendMessage(new StringTextComponent("This campfire have " + info.getLifeTime() / 20 + " seconds of burn time left."), player.getUniqueID());
-                else
+                if (info.getLifeTime() != -1337) {
+                    if(info.getLifeTime() == 0)
+                        player.sendMessage(new StringTextComponent("This campfire has no fuel!"), player.getUniqueID());
+                    else
+                        player.sendMessage(new StringTextComponent("This campfire has " + info.getLifeTime() / 20 + " seconds worth of fuel."), player.getUniqueID());
+                }
+                    else
                     player.sendMessage(new StringTextComponent("This campfire will burn forever!"), player.getUniqueID());
 
             //player.sendMessage(new StringTextComponent(blockState.getBlock().getRegistryName().toString()), player.getUniqueID());
@@ -99,9 +101,10 @@ public class AlternativeFireMethods {
     public void campfireSet(BlockEvent.EntityPlaceEvent event)
     {
         BlockState placed = event.getPlacedBlock();
+        BlockState replaced = event.getBlockSnapshot().getReplacedBlock();
         BlockPos pos = event.getPos();
 
-        if(!(event.getWorld().getTileEntity(pos) instanceof CampfireTileEntity))
+        if(!(event.getWorld().getTileEntity(pos) instanceof CampfireTileEntity) || !(replaced.getBlock() == Blocks.AIR))
             return;
 
         CampfireTileEntity tileEntity = (CampfireTileEntity) event.getWorld().getTileEntity(pos);
