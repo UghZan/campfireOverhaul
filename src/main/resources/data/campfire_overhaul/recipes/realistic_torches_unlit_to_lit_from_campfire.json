@@ -1,8 +1,8 @@
 {
   "type": "minecraft:campfire_cooking",
   "ingredient": {
-    "item": "realistic_torches:unlit_torch"
+    "item": "realistictorches:unlit_torch"
   },
-  "result": "realistic_torches:lit_torch",
+  "result": "realistictorches:lit_torch",
   "cookingtime": 40
 }
